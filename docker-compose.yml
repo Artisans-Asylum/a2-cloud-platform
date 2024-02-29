@@ -1,0 +1,5 @@
+include:
+  - file: extern/repo/a2-taiga-docker/docker-compose.yml
+  - file: containers/authelia/docker-compose.yml
+  - file: containers/discourse/docker-compose.yaml
+  - file: containers/light-ldap/docker-compose.yaml

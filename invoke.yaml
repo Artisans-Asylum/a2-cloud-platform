@@ -1,0 +1,10 @@
+## Configuration for Invoke.
+
+# NOTE: These attributes can be pulled from Context or Config.
+
+# Defaults for all `invoke.Context.run` commands
+run:
+  pty: true
+  echo: true
+
+project_name: cloud-platform

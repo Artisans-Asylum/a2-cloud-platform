@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Example:
+# hadolint path/to/your/Dockerfile [OPTIONS]
+
+# REF: https://github.com/hadolint/hadolint/issues/691#issuecomment-932116329
+
+dockerfile="$1"
+shift
+exec docker run --rm -i hadolint/hadolint \
+    -e PWD:${PWD} \
+    -v ${PWD}:${PWD} \
+    hadolint "$@" - < "$dockerfile"

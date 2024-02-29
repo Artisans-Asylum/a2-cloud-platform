@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "cloud-platform"
+version = "0.1.0"
+description = "A2 Cloud Platform"
+authors = [
+    "Lyle Moffitt <lylemoffitt@gmail.com>",
+    "Sadie Forest <sadie@mit.edu>"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+invoke = "^2.2.0"
+yasha = "^5.0"
+mkdocs = "^1.5.3"
+
+[tool.poetry.dev-dependencies]
+black = "^24.2.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
+flake8 = "^7.0.0"
+pytest = "^8.0.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

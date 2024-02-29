@@ -1,0 +1,6 @@
+[submodule "extern/repo/a2-taiga-docker"]
+	path = extern/repo/a2-taiga-docker
+	url = git@github.com:Artisans-Asylum/a2-taiga-docker.git
+[submodule "extern/repo/authelia"]
+	path = extern/repo/authelia
+	url = git@github.com:authelia/authelia.git
