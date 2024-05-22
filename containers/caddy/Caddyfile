@@ -1,0 +1,65 @@
+# REF: https://caddyserver.com/docs/caddyfile/concepts
+# REF: https://caddyserver.com/docs/caddyfile/directives/reverse_proxy#examples
+
+{
+	email	lylemoffitt@gmail.com # maintainer's email
+}
+
+# snippet use as: import logging
+(logging) {
+	log {
+		output file /var/log/caddy.log
+		format json
+	}
+}
+
+app.localhost {
+	handle_path /taiga/* {
+		rewrite * {path}
+		reverse_proxy taiga-gateway # docker dns service name
+	}
+	# handle_path /discourse/* {
+	# 	rewrite * {path}
+	# 	reverse_proxy discourse-app # docker dns service name
+	# }
+	# handle_path /authelia/* {
+	# 	rewrite * {path}
+	# 	reverse_proxy authelia # docker dns service name
+	# }
+	# handle_path /ldap/* {
+	# 	rewrite * {path}
+	# 	reverse_proxy lldap # docker dns service name
+	# }
+	import logging
+}
+
+taiga.artisans-collab.org {
+	reverse_proxy taiga-gateway # docker dns service name
+	import logging
+}
+
+# auth.artisans-collab.org {
+# 	reverse_proxy authelia # docker dns service name
+# 	# reverse_proxy keycloak # docker dns service name
+# 	import logging
+# }
+
+# ldap.artisans-collab.org {
+# 	reverse_proxy lldap # docker dns service name
+# 	import logging
+# }
+
+# discourse.artisans-collab.org {
+# 	reverse_proxy discourse-app # docker dns service name
+# 	import logging
+# }
+
+mail.artisans-collab.org {
+	# reverse_proxy mailserver # docker dns service name
+	respond <<HTML
+		<html>
+		  <head><title>NOT IMPL</title></head>
+		  <body>This site is not implemented yet.</body>
+		</html>
+		HTML 500
+}
