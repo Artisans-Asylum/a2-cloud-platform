@@ -20,8 +20,11 @@ show:             ## Show the current environment.
 .PHONY: deps
 deps:             ## Install dependencies of project.
 	@echo "List commnd paths or install if not found"
-	which poetry || pip install poetry
-	which invoke || pip install invoke
+	which pip || sudo apt install python3-pip
+	which poetry || python3 -m pip install poetry
+	which invoke || python3 -m pip install invoke
+	which yasha || python3 -m pip install yasha
+	poetry config --local virtualenvs.in-project trues
 	poetry install --no-root
 	invoke deps.install-post-bootstrap
 
@@ -73,3 +76,8 @@ docs:             ## Build the documentation.
 	@echo "building documentation ..."
 	@$(ENV_PREFIX)mkdocs build
 	URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL || open $$URL
+
+.PHONY: build
+docker:           ## Make docker files and all deps
+	invoke build.j2
+	docker compose build
