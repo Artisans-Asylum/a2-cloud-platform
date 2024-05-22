@@ -21,9 +21,9 @@ services:
     environment:
       - UID=####
       - GID=####
-      - TZ=####/####
-      - LLDAP_JWT_SECRET=REPLACE_WITH_RANDOM
-      - LLDAP_KEY_SEED=REPLACE_WITH_RANDOM
+      - TZ=${TZ}
+      - LLDAP_JWT_SECRET=${LLDAP_JWT_SECRET}
+      - LLDAP_KEY_SEED=${LLDAP_KEY_SEED}
       - LLDAP_LDAP_BASE_DN=dc=example,dc=com
       # If using LDAPS, set enabled true and configure cert and key path
       # - LLDAP_LDAPS_OPTIONS__ENABLED=true
@@ -32,3 +32,6 @@ services:
       # You can also set a different database:
       # - LLDAP_DATABASE_URL=mysql://mysql-user:password@mysql-server/my-database
       # - LLDAP_DATABASE_URL=postgres://postgres-user:password@postgres-server/my-database
+  networks:
+    - proxy
+    - auth-net
