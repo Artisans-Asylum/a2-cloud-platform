@@ -1,0 +1,42 @@
+# REF: https://phoenixnap.com/kb/letsencrypt-docker
+
+services:
+
+  webserver:
+    image: nginx:latest
+    ports:
+      - 80:80   # http
+      - 443:443 # https
+    restart: always
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+    # command: >-
+    #   certonly --reinstall 
+    #   --webroot --webroot-path=/var/www/certbot
+    #   --agree-tos --no-eff-email
+    #   --email ${EMAIL} 
+    #   -d ${DOMAIN}
+
+  certbot-cert-create:
+    extends: certbot
+    command:
+      - certonly
+      - --webroot
+      - --webroot-path
+      - /var/www/certbot/
+      - --dry-run
+      - -d
+      - taiga.artisans-collab.org
+
+  certbot-cert-renew:
+    # Needs to run every three months
+    extends: certbot
+    command:
+      - renew
