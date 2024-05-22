@@ -4,3 +4,15 @@
 [submodule "extern/repo/authelia"]
 	path = extern/repo/authelia
 	url = git@github.com:authelia/authelia.git
+[submodule "extern/repo/a2-taiga-back"]
+	path = extern/repo/a2-taiga-back
+	url = git@github.com:Artisans-Asylum/a2-taiga-back.git
+[submodule "extern/repo/a2-taiga-front"]
+	path = extern/repo/a2-taiga-front
+	url = git@github.com:Artisans-Asylum/a2-taiga-front.git
+[submodule "extern/repo/a2-taiga-protected"]
+	path = extern/repo/a2-taiga-protected
+	url = git@github.com:Artisans-Asylum/a2-taiga-protected.git
+[submodule "extern/repo/docker-discourse"]
+	path = extern/repo/docker-discourse
+	url = git@github.com:tiredofit/docker-discourse.git
